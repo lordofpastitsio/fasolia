@@ -1,268 +1,546 @@
+
+cat > /mnt/user-data/outputs/fasolia_royal.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="el">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Τα Φασόλια της Γιαγιάς 🫘</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Η Μεγαλειώδης Υπόθεσις των Φασολίων</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0e0e12;
-  --bg2: #16161e;
-  --bg3: #1e1e2a;
-  --border: #2e2e40;
-  --text: #e8e6f0;
-  --muted: #7a7890;
-  --safe: #22c55e;
-  --safe-dim: #14532d;
-  --poison: #ef4444;
-  --poison-dim: #7f1d1d;
-  --path: #f59e0b;
-  --path-dim: #78350f;
-  --start: #818cf8;
-  --accent: #a78bfa;
-  --accent2: #38bdf8;
-  --code-bg: #0d1117;
+  --gold: #c9a84c;
+  --gold2: #f0d080;
+  --gold3: #7a5c1e;
+  --bg: #0a0804;
+  --bg2: #100e08;
+  --bg3: #1a1608;
+  --bg4: #221e0e;
+  --border: #3a3010;
+  --border2: #5a4820;
+  --text: #f0e6c8;
+  --muted: #9a8a60;
+  --safe: #4caf7d;
+  --safe-bg: #0a1f12;
+  --poison: #e05050;
+  --poison-bg: #1f0a0a;
+  --path: #c9a84c;
+  --purple: #9b6fc7;
+  --purple-bg: #130d1f;
+  --red-royal: #8b1a1a;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Syne', sans-serif;
+  font-family: 'IM Fell English', serif;
   min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(201,168,76,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(139,26,26,0.06) 0%, transparent 60%);
 }
-a { color: var(--accent); }
 
-/* HEADER */
+/* ══════════════════════════════════
+   ORNAMENTAL DIVIDERS
+══════════════════════════════════ */
+.orn { text-align: center; color: var(--gold3); font-size: 1.1rem; letter-spacing: 0.3em; margin: 0.6rem 0; user-select: none; }
+.orn-line { display: flex; align-items: center; gap: 0.8rem; color: var(--gold3); font-size: 0.9rem; margin: 0.5rem 0; }
+.orn-line::before, .orn-line::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold3), transparent); }
+
+/* ══════════════════════════════════
+   HERALDIC HEADER
+══════════════════════════════════ */
 header {
-  border-bottom: 1px solid var(--border);
-  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--border2);
   background: var(--bg2);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
-.header-top { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
-header h1 span { color: var(--accent); }
-.badge { font-size: 11px; font-weight: 600; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-header p { margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem; max-width: 700px; line-height: 1.6; }
-
-/* LAYOUT */
-.page { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: calc(100vh - 120px); }
-.col { padding: 1.8rem 2rem; border-right: 1px solid var(--border); }
-.col:last-child { border-right: none; }
-.col-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
-.col-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* PROBLEM STATEMENT */
-.story-box {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.2rem 1.4rem;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.8;
+.header-ornament {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.015) 80px, rgba(201,168,76,0.015) 81px);
+  pointer-events: none;
+}
+.header-inner { position: relative; z-index: 1; padding: 2rem 3rem 1.5rem; text-align: center; }
+.crown { font-size: 2.5rem; margin-bottom: 0.3rem; filter: sepia(0.5); }
+.header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--gold2);
+  text-shadow: 0 0 40px rgba(201,168,76,0.3);
+}
+.header-title .of { font-style: italic; font-weight: 700; color: var(--gold); font-size: 2rem; }
+.header-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1rem;
   color: var(--muted);
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
 }
-.story-box strong { color: var(--text); }
-.story-box .highlight { color: var(--safe); font-weight: 600; }
-.story-box .poison-h { color: var(--poison); font-weight: 600; }
-.story-box .path-h { color: var(--path); font-weight: 600; }
-
-.io-block {
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem 1.2rem;
-  margin-bottom: 0.8rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
-  line-height: 1.9;
-}
-.io-block .comment { color: var(--muted); }
-.io-block .kw { color: var(--accent); }
-.io-block .val { color: var(--path); }
-.io-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
-
-.example-box {
+.header-subtitle strong { color: var(--gold); font-style: normal; }
+.royal-decree {
+  display: inline-block;
+  border: 1px solid var(--border2);
   background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 1rem;
+  padding: 4px 16px;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold3);
+  margin-top: 0.7rem;
+  border-radius: 2px;
 }
-.example-header { background: var(--bg2); padding: 8px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); }
-.example-cols { display: grid; grid-template-columns: 1fr 1fr; }
-.example-col { padding: 0.9rem 1.2rem; }
-.example-col:first-child { border-right: 1px solid var(--border); }
-pre { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text); }
-.ans-line { color: var(--path); font-weight: 600; }
 
-/* VISUALIZER */
-.controls-bar {
-  display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 1rem;
+/* ══════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════ */
+.page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 200px);
 }
-.ctrl-group { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
-.ctrl-group input[type=number] {
-  width: 52px; background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 7px; color: var(--text); font-family: 'JetBrains Mono', monospace;
-  font-size: 13px; padding: 4px 8px; outline: none;
-}
-.ctrl-group input[type=number]:focus { border-color: var(--accent); }
-.btn {
-  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600;
-  padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
-  background: var(--bg3); color: var(--text); cursor: pointer; transition: all .15s;
-}
-.btn:hover { border-color: var(--accent); color: var(--accent); }
-.btn.go { background: var(--accent); color: #0e0e12; border-color: var(--accent); }
-.btn.go:hover { background: #c4b5fd; }
-
-.canvas-wrap {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 1rem;
+.col {
+  padding: 1.8rem 2rem;
+  border-right: 1px solid var(--border);
   position: relative;
 }
-canvas { display: block; width: 100%; }
-
-.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 1rem; }
-.leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
-.leg-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-.leg-line { width: 22px; height: 3px; border-radius: 2px; flex-shrink: 0; }
-
-.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1rem; }
-.metric { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
-.metric .lbl { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
-.metric .val { font-size: 1.3rem; font-weight: 800; color: var(--text); }
-.metric .val.safe { color: var(--safe); }
-.metric .val.path { color: var(--path); }
-.metric .val.start { color: var(--start); }
-
-.log {
-  background: var(--code-bg); border: 1px solid var(--border); border-radius: 10px;
-  padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  color: var(--muted); line-height: 1.8; min-height: 70px; max-height: 100px;
-  overflow-y: auto;
+.col:last-child { border-right: none; }
+.col-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.log .em { color: var(--path); font-weight: 600; }
-.log .ok { color: var(--safe); }
-.log .info { color: var(--accent2); }
+.col-heading::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border2), transparent); }
 
-/* TABS */
-.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 1.2rem; gap: 0; }
+/* ══════════════════════════════════
+   TABS — ROYAL STYLE
+══════════════════════════════════ */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 1.2rem;
+}
 .tab-btn {
-  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600;
-  padding: 8px 18px; background: none; border: none; color: var(--muted); cursor: pointer;
-  border-bottom: 2px solid transparent; transition: all .15s; margin-bottom: -1px;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.9rem;
+  padding: 7px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+  margin-bottom: -1px;
+  font-style: italic;
 }
-.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-btn:hover { color: var(--gold); }
+.tab-btn.active { color: var(--gold2); border-bottom-color: var(--gold); font-style: normal; font-weight: bold; }
 .tab-pane { display: none; }
 .tab-pane.active { display: block; }
 
-/* ALGO */
-.algo-step {
-  display: flex; gap: 12px; margin-bottom: 1rem;
+/* ══════════════════════════════════
+   SCROLL STORY
+══════════════════════════════════ */
+.scroll-box {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
 }
-.step-num {
-  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-  background: var(--accent); color: #0e0e12; display: flex; align-items: center;
-  justify-content: center; font-size: 13px; font-weight: 800; margin-top: 2px;
+.scroll-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold3), transparent);
 }
-.step-body { font-size: 0.88rem; line-height: 1.7; color: var(--muted); }
-.step-body strong { color: var(--text); }
-.step-body code { font-family: 'JetBrains Mono', monospace; font-size: 0.82em; background: var(--bg3); border: 1px solid var(--border); padding: 1px 5px; border-radius: 5px; color: var(--accent2); }
+.scroll-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold3), transparent);
+}
+.scroll-box p {
+  font-size: 0.92rem;
+  line-height: 1.9;
+  color: var(--muted);
+  font-style: italic;
+}
+.scroll-box p strong { color: var(--text); font-style: normal; }
+.scroll-box .safe-em { color: var(--safe); font-style: normal; font-weight: bold; }
+.scroll-box .poison-em { color: var(--poison); font-style: normal; font-weight: bold; }
+.scroll-box .path-em { color: var(--gold); font-style: normal; font-weight: bold; }
 
-.complexity-box {
-  background: var(--bg3); border: 1px solid var(--border); border-radius: 10px;
-  padding: 1rem 1.2rem; margin-top: 1rem;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 2;
+/* ══════════════════════════════════
+   IO BLOCKS
+══════════════════════════════════ */
+.io-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold3);
+  margin-bottom: 5px;
+  margin-top: 0.8rem;
 }
-.complexity-box .kw { color: var(--accent); }
-.complexity-box .cmt { color: var(--muted); }
+.io-block {
+  background: #05040200;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold3);
+  border-radius: 3px;
+  padding: 0.9rem 1.1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 2;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  background: var(--bg3);
+}
+.io-block .kw { color: var(--gold); }
+.io-block .cmt { color: var(--border2); }
+.io-block .val { color: var(--safe); }
 
-/* CODE */
-.code-block {
-  background: var(--code-bg); border: 1px solid var(--border); border-radius: 12px;
-  overflow: auto; padding: 1.2rem 1.4rem;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.9;
-  max-height: calc(100vh - 280px);
+.example-box {
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
 }
-.c-cmt { color: #6a9955; }
-.c-kw  { color: #569cd6; }
-.c-type{ color: #4ec9b0; }
-.c-fn  { color: #dcdcaa; }
-.c-num { color: #b5cea8; }
-.c-str { color: #ce9178; }
+.example-header {
+  background: var(--bg4);
+  padding: 6px 14px;
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold3);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.example-cols { display: grid; grid-template-columns: 1fr 1fr; }
+.example-col { padding: 0.8rem 1.1rem; }
+.example-col:first-child { border-right: 1px solid var(--border); }
+pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.9;
+  color: var(--text);
+}
+.ans-val { color: var(--gold); font-weight: 600; }
+.ex-note { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.7; font-style: italic; }
+
+/* ══════════════════════════════════
+   ALGO STEPS
+══════════════════════════════════ */
+.algo-step { display: flex; gap: 14px; margin-bottom: 1.2rem; align-items: flex-start; }
+.step-medallion {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border: 1px solid var(--gold3);
+  border-radius: 50%;
+  background: var(--bg4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--gold);
+  margin-top: 2px;
+}
+.step-text { font-size: 0.87rem; line-height: 1.8; color: var(--muted); }
+.step-text strong { color: var(--text); font-style: italic; }
+.step-text code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8em;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--gold2);
+}
+.complexity-royal {
+  border: 1px solid var(--border2);
+  border-top: 2px solid var(--gold3);
+  background: var(--bg3);
+  border-radius: 3px;
+  padding: 1rem 1.2rem;
+  margin-top: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 2.1;
+}
+.complexity-royal .ck { color: var(--gold); }
+.complexity-royal .cm { color: var(--muted); }
+
+/* ══════════════════════════════════
+   CODE BLOCK
+══════════════════════════════════ */
+.code-royal {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 1.2rem 1.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 2;
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+}
+.c-cmt { color: #5a6832; }
+.c-kw  { color: #9b6fc7; }
+.c-type{ color: #5aaa88; }
+.c-fn  { color: #c9a84c; }
+.c-num { color: #a0c878; }
+.c-str { color: #c0785a; }
 .c-var { color: var(--text); }
-.c-op  { color: #d4d4d4; }
+.c-op  { color: var(--muted); }
 
-/* BOTTOM BAR */
-.bottom-bar {
-  grid-column: 1 / -1; border-top: 1px solid var(--border);
-  background: var(--bg2); padding: 0.7rem 2rem;
-  display: flex; align-items: center; gap: 1rem; font-size: 12px; color: var(--muted);
+/* ══════════════════════════════════
+   VISUALIZER
+══════════════════════════════════ */
+.controls-royal {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
 }
-.bottom-bar .sep { color: var(--border); }
+.ctrl-lbl { font-size: 12px; color: var(--muted); font-style: italic; display: flex; align-items: center; gap: 6px; }
+.ctrl-lbl input[type=number] {
+  width: 52px;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  color: var(--gold2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  padding: 3px 8px;
+  outline: none;
+}
+.ctrl-lbl input:focus { border-color: var(--gold); }
+.royal-btn {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.9rem;
+  padding: 6px 18px;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all .15s;
+  letter-spacing: 0.03em;
+}
+.royal-btn:hover { background: var(--bg3); border-color: var(--gold); color: var(--gold2); }
+.royal-btn.go {
+  background: var(--gold3);
+  border-color: var(--gold);
+  color: var(--gold2);
+  font-weight: bold;
+}
+.royal-btn.go:hover { background: #8a6a28; }
+
+.canvas-royal {
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg2);
+  margin-bottom: 0.9rem;
+  position: relative;
+}
+.canvas-royal::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    linear-gradient(to right, rgba(201,168,76,0.06) 0%, transparent 3%, transparent 97%, rgba(201,168,76,0.06) 100%),
+    linear-gradient(to bottom, rgba(201,168,76,0.06) 0%, transparent 3%, transparent 97%, rgba(201,168,76,0.06) 100%);
+}
+canvas { display: block; width: 100%; }
+
+.legend-royal { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 0.9rem; }
+.leg { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); font-style: italic; }
+.leg-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.leg-line { width: 22px; height: 2.5px; border-radius: 2px; flex-shrink: 0; }
+
+.metrics-royal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 0.9rem;
+}
+.metric-royal {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold3);
+  border-radius: 3px;
+  padding: 9px 10px;
+}
+.metric-royal .lbl { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; font-family: 'Playfair Display', serif; }
+.metric-royal .val { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 900; color: var(--gold2); }
+.metric-royal .val.green { color: var(--safe); }
+.metric-royal .val.small { font-size: 0.85rem; }
+
+.royal-log {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--gold3);
+  border-radius: 3px;
+  padding: 10px 14px;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.88rem;
+  line-height: 1.9;
+  min-height: 60px;
+  max-height: 90px;
+  overflow-y: auto;
+  color: var(--muted);
+  font-style: italic;
+}
+.royal-log .ok { color: var(--safe); font-style: normal; font-weight: bold; }
+.royal-log .cost { color: var(--gold); font-style: normal; font-weight: bold; }
+.royal-log .info { color: var(--purple); font-style: normal; }
+
+/* ══════════════════════════════════
+   FOOTER SCROLL
+══════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--border2);
+  background: var(--bg2);
+  padding: 0.8rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+}
+footer .motto {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  color: var(--gold3);
+  letter-spacing: 0.1em;
+}
+
+/* ══════════════════════════════════
+   TOOLTIP
+══════════════════════════════════ */
+#tooltip {
+  position: fixed;
+  background: var(--bg4);
+  border: 1px solid var(--gold3);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: 'IM Fell English', serif;
+  font-size: 12px;
+  color: var(--gold2);
+  pointer-events: none;
+  display: none;
+  z-index: 100;
+  font-style: italic;
+}
 
 @media (max-width: 900px) {
   .page { grid-template-columns: 1fr; }
   .col { border-right: none; border-bottom: 1px solid var(--border); }
-  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .metrics-royal { grid-template-columns: repeat(2,1fr); }
+  .header-title { font-size: 1.8rem; }
 }
 </style>
 </head>
 <body>
 
+<div id="tooltip"></div>
+
+<!-- ══ ROYAL HEADER ══ -->
 <header>
-  <div class="header-top">
-    <h1>Τα Φασόλια <span>της Γιαγιάς</span></h1>
-    <span class="badge">Dijkstra + Bitmask DP</span>
+  <div class="header-ornament"></div>
+  <div class="header-inner">
+    <div class="crown">👑</div>
+    <div class="orn">✦ ❧ ✦</div>
+    <h1 class="header-title">
+      Η Μεγαλειώδης Υπόθεσις<br>
+      <span class="of">των Ευγενών Φασολίων</span>
+    </h1>
+    <div class="orn">✦ ❧ ✦</div>
+    <p class="header-subtitle">
+      Εν ᾗ ο τλήμων Μαθητής, μεταμορφωθείς εις Έντομον, καλείται να <strong>συλλέξη Ζουμάκιον</strong>
+      εκ των μη δεδηλητηριασμένων Πιάτων — αψηφών τας ραδιουργίας <strong>του κυρίου Νετανιάχου</strong>
+      και της τρομεράς <strong>Γιαγιάς</strong>.
+    </p>
+    <div class="royal-decree">⚜ Αλγόριθμος: Dijkstra + Bitmask DP ⚜</div>
   </div>
-  <p>Ο μαθητής (σε μέγεθος εντόμου) πρέπει να επισκεφτεί <strong>όλα</strong> τα ασφαλή πιάτα με ελάχιστη συνολική απόσταση. Τα K πιάτα με το λιγότερο λάδι είναι δηλητηριασμένα — μπορεί να τα διασχίσει αλλά δεν πίνει από αυτά.</p>
 </header>
 
+<!-- ══ MAIN ══ -->
 <div class="page">
 
-<!-- LEFT COL: PROBLEM + ALGO/CODE -->
+<!-- ══════ LEFT: PROBLEM / ALGO / CODE ══════ -->
 <div class="col">
-  <div class="col-title">Εκφώνηση &amp; Αλγόριθμος</div>
+  <div class="col-heading">📜 Εκφώνησις &amp; Μέθοδος</div>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('problem')">Πρόβλημα</button>
-    <button class="tab-btn" onclick="switchTab('algo')">Αλγόριθμος</button>
-    <button class="tab-btn" onclick="switchTab('code')">C++ Κώδικας</button>
+    <button class="tab-btn active" onclick="switchTab('p')">Η Υπόθεσις</button>
+    <button class="tab-btn" onclick="switchTab('a')">Ο Αλγόριθμος</button>
+    <button class="tab-btn" onclick="switchTab('c')">Κώδιξ C++</button>
   </div>
 
-  <!-- PROBLEM TAB -->
-  <div class="tab-pane active" id="tab-problem">
-    <div class="story-box">
-      Δίνεται weighted graph με <strong>N πιάτα</strong> (κόμβοι). Τα <span class="poison-h">K πιάτα με το λιγότερο λάδι</span> είναι δηλητηριασμένα. Ο μαθητής ξεκινά από τον <strong>κόμβο 0</strong> και πρέπει να επισκεφτεί <span class="highlight">όλα τα ασφαλή πιάτα</span> με <span class="path-h">ελάχιστη συνολική απόσταση</span>. Μπορεί να περνά από δηλητηριασμένους κόμβους — απλά δεν πίνει.
+  <!-- TAB: PROBLEM -->
+  <div class="tab-pane active" id="tab-p">
+
+    <div class="scroll-box">
+      <p>
+        Δίδεται βεβαρημένος γράφος <strong>N κόμβων</strong> (ήτοι πιάτων φασολίων).
+        Ο αλεξίκακος <span class="poison-em">κύριος Νετανιάχου</span>, εν συνεργασία μετά της πανούργου Γιαγιάς,
+        ηλλοίωσε τα <strong>K πιάτα με το ολιγώτερον λάδι</strong> — αυτά είναι <span class="poison-em">δεδηλητηριασμένα</span>.
+        Ο Μαθητής ξεκινά εκ <strong>κόμβου 0</strong> και οφείλει να επισκεφθή
+        <span class="safe-em">άπαντα τα ασφαλή πιάτα</span> με <span class="path-em">ελαχίστη ολική απόστασιν</span>.
+        Επιτρέπεται η διέλευσις εκ δεδηλητηριασμένων κόμβων — πλην ου πίνει!
+      </p>
     </div>
 
-    <div class="io-label">Μορφή Εισόδου</div>
+    <div class="io-label">⸻ Μορφή Εισόδου ⸻</div>
     <div class="io-block">
-<span class="kw">N M</span>           <span class="comment">// πλήθος πιάτων, ακμών</span>
-<span class="kw">A[0]</span>          <span class="comment">// λάδι πιάτου 0</span>
-<span class="kw">A[1]</span>          <span class="comment">// λάδι πιάτου 1</span>
-<span class="comment">...</span>           <span class="comment">// (N γραμμές συνολικά)</span>
-<span class="kw">u₁ v₁ w₁</span>      <span class="comment">// ακμή: από u₁ σε v₁, κόστος w₁</span>
-<span class="comment">...</span>           <span class="comment">// (M γραμμές συνολικά)</span>
-<span class="kw">K</span>             <span class="comment">// πλήθος δηλητηριασμένων</span>
+<span class="kw">N M</span>             <span class="cmt">// πλήθος πιάτων, ακμών</span>
+<span class="kw">A[0]</span>            <span class="cmt">// λάδι πιάτου 0</span>
+<span class="kw">A[1]</span>            <span class="cmt">// λάδι πιάτου 1</span>
+<span class="cmt">...              // (N γραμμές συνολικά)</span>
+<span class="kw">u₁ v₁ w₁</span>        <span class="cmt">// ακμή: u→v, βάρος w</span>
+<span class="cmt">...              // (M γραμμές)</span>
+<span class="kw">K</span>               <span class="cmt">// πλήθος δηλητηριασμένων</span>
     </div>
 
-    <div class="io-label">Μορφή Εξόδου</div>
-    <div class="io-block"><span class="val">ελάχιστη_απόσταση</span></div>
+    <div class="io-label">⸻ Μορφή Εξόδου ⸻</div>
+    <div class="io-block"><span class="val">ελαχίστη_απόστασις</span></div>
 
-    <div class="io-label">Παράδειγμα</div>
+    <div class="io-label">⸻ Παράδειγμα Βασιλικόν ⸻</div>
     <div class="example-box">
-      <div class="example-header">
-        <span>Είσοδος</span><span>Έξοδος</span>
-      </div>
+      <div class="example-header"><span>Είσοδος</span><span>Έξοδος</span></div>
       <div class="example-cols">
-        <div class="example-col">
-<pre>5 6
+        <div class="example-col"><pre>5 6
 10
 3
 7
@@ -274,90 +552,108 @@ canvas { display: block; width: 100%; }
 1 3 8
 2 4 5
 3 4 2
-2</pre>
-        </div>
+2</pre></div>
         <div class="example-col">
-<pre>
-
-
-<span class="ans-line">10</span>
-
-</pre>
-          <div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6">
-            Δηλητηριασμένα: κόμβοι 1,3 (λάδι 3 και 1). Ασφαλή: 0,2,4.<br>
-            0→2(3)→4(5)=8, αλλά πρέπει και το 0 (ήδη εκεί).<br>
-            Βέλτιστο: 0→2→4, κόστος 3+5=<strong style="color:var(--path)">8</strong>, +κόμβος 0 χωρίς κόστος.<br>
-            (ο κόμβος 0 ΔΕΝ χρειάζεται επίσκεψη, είναι αφετηρία — εξαρτάται από την εκφώνηση)
+          <pre><span class="ans-val">8</span></pre>
+          <div class="ex-note">
+            Δηλητηριασμένα: κόμβοι 1, 3<br>
+            (λάδι: 3 και 1 — τα ολιγώτερα)<br>
+            Βέλτιστον: 0→2→4<br>
+            Κόστος: 3+5 = <strong style="color:var(--gold)">8</strong>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 
-  <!-- ALGO TAB -->
-  <div class="tab-pane" id="tab-algo">
+  <!-- TAB: ALGO -->
+  <div class="tab-pane" id="tab-a">
+
     <div class="algo-step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <strong>Βρες τα δηλητηριασμένα πιάτα:</strong> Ταξινόμησε τους κόμβους κατά λάδι (<code>sort</code>) και σημείωσε τους K με το λιγότερο ως <code>poisoned[]</code>. Οι υπόλοιποι N-K είναι ασφαλείς.
-      </div>
-    </div>
-    <div class="algo-step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <strong>Dijkstra από κάθε ασφαλή + αφετηρία:</strong> Τρέξε <code>Dijkstra(s)</code> από κάθε ασφαλή κόμβο <em>και</em> τον κόμβο 0. Έτσι βρίσκεις τις ελάχιστες αποστάσεις μεταξύ τους — ακόμα και αν το μονοπάτι περνά από δηλητηριασμένους. Αποθήκευσε <code>dist[i][j]</code>.
-      </div>
-    </div>
-    <div class="algo-step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <strong>Bitmask DP:</strong> Ορισμός: <code>dp[mask][i]</code> = ελάχιστο κόστος για να έχεις επισκεφτεί τους ασφαλείς κόμβους που δηλώνει το <code>mask</code>, με τελευταίο τον <code>i</code>.<br>
-        Βάση: <code>dp[1&lt;&lt;i][i] = dist[start][safe[i]]</code><br>
-        Μετάβαση: <code>dp[mask|(1&lt;&lt;j)][j] = min(dp[mask][i] + dist[i][j])</code>
-      </div>
-    </div>
-    <div class="algo-step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <strong>Απάντηση:</strong> <code>min over i of dp[(1&lt;&lt;S)-1][i]</code> όπου <code>S = N-K</code> (αριθμός ασφαλών).
+      <div class="step-medallion">Ⅰ</div>
+      <div class="step-text">
+        <strong>Εντοπισμός Δεδηλητηριασμένων:</strong>
+        Ταξινόμησε τους κόμβους κατ' ανερχόμενον λάδι (<code>sort</code>).
+        Σημείωσε τους K πρώτους ως <code>poisoned[i] = true</code>.
+        Οι λοιποί N−K είναι <em>ασφαλείς</em>.
       </div>
     </div>
 
-    <div class="complexity-box">
+    <div class="algo-step">
+      <div class="step-medallion">Ⅱ</div>
+      <div class="step-text">
+        <strong>Dijkstra εκ πάντων των Ασφαλών + Αφετηρίας:</strong>
+        Τρέξε <code>dijkstra(s)</code> εκ κάθε ασφαλούς κόμβου <em>και</em> εκ του κόμβου 0.
+        Αποθήκευσε <code>dist[i][j]</code>. Τα ενδιάμεσα δηλητηριασμένα πιάτα παρακάμπτονται αφανώς.
+      </div>
+    </div>
 
-  <!-- CODE TAB -->
-  <div class="tab-pane" id="tab-code">
-    <div class="code-block"><pre>
-<span class="c-cmt">// Τα Φασόλια της Γιαγιάς — Dijkstra + Bitmask DP</span>
+    <div class="algo-step">
+      <div class="step-medallion">Ⅲ</div>
+      <div class="step-text">
+        <strong>Bitmask DP — Περιοδεία Κόμβων:</strong>
+        Ορισμός: <code>dp[mask][i]</code> = ελάχιστον κόστος δια την επίσκεψιν των κόμβων τού <code>mask</code>,
+        τελευταίον εκ των οποίων ήτο ο <code>i</code>.<br>
+        Βάσις: <code>dp[1&lt;&lt;i][i] = dist[0][safe[i]]</code><br>
+        Μετάβασις: <code>dp[mask|(1&lt;&lt;j)][j] = min(dp[mask][i] + dist[i][j])</code>
+      </div>
+    </div>
+
+    <div class="algo-step">
+      <div class="step-medallion">Ⅳ</div>
+      <div class="step-text">
+        <strong>Απάντησις:</strong> <code>min{ dp[FULL][i] }</code>
+        όπου <code>FULL = (1&lt;&lt;S)−1</code> και S ο αριθμός ασφαλών πιάτων.
+      </div>
+    </div>
+
+    <div class="complexity-royal">
+<span class="ck">Dijkstra:</span>   <span class="cm">O(S × (N+M) log N)</span>
+<span class="ck">Bitmask DP:</span> <span class="cm">O(2^S × S²)</span>
+<span class="ck">Σύνολον:</span>    <span class="ck">O(S·(N+M)logN + 2^S·S²)</span>
+
+<span class="cm">⚠ Χρησιμοποίει <span style="color:#5aaa88">long long</span> — οι αποστάσεις μπορούν να εκτοξευθούν!</span>
+<span class="cm">✓ Αντέχει S ≤ 20, N ≤ 10⁵</span>
+    </div>
+
+  </div>
+
+  <!-- TAB: CODE -->
+  <div class="tab-pane" id="tab-c">
+    <div class="code-royal"><pre>
+<span class="c-cmt">// ═══════════════════════════════════════════════════
+// Τα Φασόλια της Γιαγιάς — Βασιλική Λύσις
+// Dijkstra + Bitmask DP   (0-indexed)
+// ═══════════════════════════════════════════════════</span>
 <span class="c-kw">#include</span> <span class="c-str">&lt;bits/stdc++.h&gt;</span>
 <span class="c-kw">using namespace</span> <span class="c-var">std</span>;
 <span class="c-kw">typedef</span> <span class="c-type">long long</span> <span class="c-type">ll</span>;
 <span class="c-kw">typedef</span> pair&lt;<span class="c-type">ll</span>,<span class="c-type">int</span>&gt; <span class="c-type">pli</span>;
 
-<span class="c-kw">const</span> <span class="c-type">ll</span> <span class="c-var">INF</span> <span class="c-op">=</span> <span class="c-num">1e18</span>;
-<span class="c-kw">const</span> <span class="c-type">int</span> <span class="c-var">MAXN</span> <span class="c-op">=</span> <span class="c-num">305</span>;
+<span class="c-kw">const</span> <span class="c-type">ll</span> INF <span class="c-op">=</span> <span class="c-num">1e18</span>;
+<span class="c-kw">const</span> <span class="c-type">int</span> MAXN <span class="c-op">=</span> <span class="c-num">305</span>;
 
-<span class="c-type">int</span> <span class="c-var">N</span>, <span class="c-var">M</span>, <span class="c-var">K</span>;
-vector&lt;pair&lt;<span class="c-type">int</span>,<span class="c-type">ll</span>&gt;&gt; <span class="c-var">adj</span>[<span class="c-var">MAXN</span>];
-<span class="c-type">ll</span>   <span class="c-var">oil</span>[<span class="c-var">MAXN</span>];
-<span class="c-type">bool</span> <span class="c-var">poisoned</span>[<span class="c-var">MAXN</span>];
-<span class="c-type">int</span>  <span class="c-var">safe_id</span>[<span class="c-num">20</span>]; <span class="c-cmt">// indices of safe nodes</span>
-<span class="c-type">ll</span>   <span class="c-var">dist_from</span>[<span class="c-num">22</span>][<span class="c-var">MAXN</span>]; <span class="c-cmt">// [0..S-1] από safe nodes, [S] από κόμβο 0</span>
+<span class="c-type">int</span> N, M, K;
+vector&lt;pair&lt;<span class="c-type">int</span>,<span class="c-type">ll</span>&gt;&gt; adj[MAXN];
+<span class="c-type">ll</span>   oil[MAXN];
+<span class="c-type">bool</span> poisoned[MAXN];
+<span class="c-type">int</span>  safe_id[<span class="c-num">20</span>];       <span class="c-cmt">// ασφαλείς κόμβοι</span>
+<span class="c-type">ll</span>   D[<span class="c-num">22</span>][MAXN];       <span class="c-cmt">// D[i] = dist από safe_id[i], D[S] = από κόμβο 0</span>
 
-<span class="c-type">void</span> <span class="c-fn">dijkstra</span>(<span class="c-type">int</span> <span class="c-var">src</span>, <span class="c-type">ll</span>* <span class="c-var">d</span>) {
-    fill(<span class="c-var">d</span>, <span class="c-var">d</span><span class="c-op">+</span><span class="c-var">N</span>, <span class="c-var">INF</span>);
-    <span class="c-var">d</span>[<span class="c-var">src</span>] <span class="c-op">=</span> <span class="c-num">0</span>;
-    priority_queue&lt;<span class="c-type">pli</span>, vector&lt;<span class="c-type">pli</span>&gt;, greater&lt;<span class="c-type">pli</span>&gt;&gt; <span class="c-var">pq</span>;
-    <span class="c-var">pq</span>.push({<span class="c-num">0</span>, <span class="c-var">src</span>});
-    <span class="c-kw">while</span> (<span class="c-op">!</span><span class="c-var">pq</span>.empty()) {
-        <span class="c-kw">auto</span> [<span class="c-var">du</span>, <span class="c-var">u</span>] <span class="c-op">=</span> <span class="c-var">pq</span>.top(); <span class="c-var">pq</span>.pop();
-        <span class="c-kw">if</span> (<span class="c-var">du</span> <span class="c-op">&gt;</span> <span class="c-var">d</span>[<span class="c-var">u</span>]) <span class="c-kw">continue</span>;
-        <span class="c-kw">for</span> (<span class="c-kw">auto</span> [<span class="c-var">v</span>, <span class="c-var">w</span>] : <span class="c-var">adj</span>[<span class="c-var">u</span>]) {
-            <span class="c-kw">if</span> (<span class="c-var">d</span>[<span class="c-var">u</span>] <span class="c-op">+</span> <span class="c-var">w</span> <span class="c-op">&lt;</span> <span class="c-var">d</span>[<span class="c-var">v</span>]) {
-                <span class="c-var">d</span>[<span class="c-var">v</span>] <span class="c-op">=</span> <span class="c-var">d</span>[<span class="c-var">u</span>] <span class="c-op">+</span> <span class="c-var">w</span>;
-                <span class="c-var">pq</span>.push({<span class="c-var">d</span>[<span class="c-var">v</span>], <span class="c-var">v</span>});
+<span class="c-type">void</span> <span class="c-fn">dijkstra</span>(<span class="c-type">int</span> src, <span class="c-type">ll</span>* d) {
+    fill(d, d<span class="c-op">+</span>N, INF);
+    d[src] <span class="c-op">=</span> <span class="c-num">0</span>;
+    priority_queue&lt;<span class="c-type">pli</span>, vector&lt;<span class="c-type">pli</span>&gt;, greater&lt;<span class="c-type">pli</span>&gt;&gt; pq;
+    pq.push({<span class="c-num">0</span>, src});
+    <span class="c-kw">while</span> (<span class="c-op">!</span>pq.empty()) {
+        <span class="c-kw">auto</span> [du, u] <span class="c-op">=</span> pq.top(); pq.pop();
+        <span class="c-kw">if</span> (du <span class="c-op">&gt;</span> d[u]) <span class="c-kw">continue</span>;
+        <span class="c-kw">for</span> (<span class="c-kw">auto</span> [v, w] : adj[u])
+            <span class="c-kw">if</span> (d[u]<span class="c-op">+</span>w <span class="c-op">&lt;</span> d[v]) {
+                d[v] <span class="c-op">=</span> d[u]<span class="c-op">+</span>w;
+                pq.push({d[v], v});
             }
-        }
     }
 }
 
@@ -365,393 +661,323 @@ vector&lt;pair&lt;<span class="c-type">int</span>,<span class="c-type">ll</span>
     ios::sync_with_stdio(<span class="c-num">false</span>);
     cin.tie(<span class="c-kw">nullptr</span>);
 
-    cin <span class="c-op">&gt;&gt;</span> <span class="c-var">N</span> <span class="c-op">&gt;&gt;</span> <span class="c-var">M</span>;
+    cin <span class="c-op">&gt;&gt;</span> N <span class="c-op">&gt;&gt;</span> M;
 
-    vector&lt;pair&lt;<span class="c-type">ll</span>,<span class="c-type">int</span>&gt;&gt; <span class="c-var">oil_sorted</span>(<span class="c-var">N</span>);
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">N</span>; <span class="c-var">i</span><span class="c-op">++</span>) {
-        cin <span class="c-op">&gt;&gt;</span> <span class="c-var">oil</span>[<span class="c-var">i</span>];
-        <span class="c-var">oil_sorted</span>[<span class="c-var">i</span>] <span class="c-op">=</span> {<span class="c-var">oil</span>[<span class="c-var">i</span>], <span class="c-var">i</span>};
+    vector&lt;pair&lt;<span class="c-type">ll</span>,<span class="c-type">int</span>&gt;&gt; by_oil(N);
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> N; i<span class="c-op">++</span>) {
+        cin <span class="c-op">&gt;&gt;</span> oil[i];
+        by_oil[i] <span class="c-op">=</span> {oil[i], i};
     }
 
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">M</span>; <span class="c-var">i</span><span class="c-op">++</span>) {
-        <span class="c-type">int</span> <span class="c-var">u</span>, <span class="c-var">v</span>; <span class="c-type">ll</span> <span class="c-var">w</span>;
-        cin <span class="c-op">&gt;&gt;</span> <span class="c-var">u</span> <span class="c-op">&gt;&gt;</span> <span class="c-var">v</span> <span class="c-op">&gt;&gt;</span> <span class="c-var">w</span>;
-        <span class="c-var">adj</span>[<span class="c-var">u</span>].push_back({<span class="c-var">v</span>, <span class="c-var">w</span>});
-        <span class="c-var">adj</span>[<span class="c-var">v</span>].push_back({<span class="c-var">u</span>, <span class="c-var">w</span>}); <span class="c-cmt">// undirected</span>
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> M; i<span class="c-op">++</span>) {
+        <span class="c-type">int</span> u, v; <span class="c-type">ll</span> w;
+        cin <span class="c-op">&gt;&gt;</span> u <span class="c-op">&gt;&gt;</span> v <span class="c-op">&gt;&gt;</span> w;
+        adj[u].push_back({v, w});
+        adj[v].push_back({u, w});
     }
 
-    cin <span class="c-op">&gt;&gt;</span> <span class="c-var">K</span>;
+    cin <span class="c-op">&gt;&gt;</span> K;
 
-    <span class="c-cmt">// Βρες τα K πιάτα με λιγότερο λάδι = δηλητηριασμένα</span>
-    sort(<span class="c-var">oil_sorted</span>.begin(), <span class="c-var">oil_sorted</span>.end());
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">K</span>; <span class="c-var">i</span><span class="c-op">++</span>)
-        <span class="c-var">poisoned</span>[<span class="c-var">oil_sorted</span>[<span class="c-var">i</span>].second] <span class="c-op">=</span> <span class="c-kw">true</span>;
+    <span class="c-cmt">// Τα K πιάτα με ολιγώτατον λάδι = δεδηλητηριασμένα</span>
+    sort(by_oil.begin(), by_oil.end());
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> K; i<span class="c-op">++</span>)
+        poisoned[by_oil[i].second] <span class="c-op">=</span> <span class="c-kw">true</span>;
 
-    <span class="c-type">int</span> <span class="c-var">S</span> <span class="c-op">=</span> <span class="c-num">0</span>;
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">N</span>; <span class="c-var">i</span><span class="c-op">++</span>)
-        <span class="c-kw">if</span> (<span class="c-op">!</span><span class="c-var">poisoned</span>[<span class="c-var">i</span>]) <span class="c-var">safe_id</span>[<span class="c-var">S</span><span class="c-op">++</span>] <span class="c-op">=</span> <span class="c-var">i</span>;
+    <span class="c-type">int</span> S <span class="c-op">=</span> <span class="c-num">0</span>;
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> N; i<span class="c-op">++</span>)
+        <span class="c-kw">if</span> (<span class="c-op">!</span>poisoned[i]) safe_id[S<span class="c-op">++</span>] <span class="c-op">=</span> i;
 
-    <span class="c-cmt">// Dijkstra από κάθε ασφαλή κόμβο</span>
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">S</span>; <span class="c-var">i</span><span class="c-op">++</span>)
-        <span class="c-fn">dijkstra</span>(<span class="c-var">safe_id</span>[<span class="c-var">i</span>], <span class="c-var">dist_from</span>[<span class="c-var">i</span>]);
-    <span class="c-cmt">// dist_from[S] = από κόμβο 0 (αφετηρία)</span>
-    <span class="c-fn">dijkstra</span>(<span class="c-num">0</span>, <span class="c-var">dist_from</span>[<span class="c-var">S</span>]);
+    <span class="c-cmt">// Dijkstra από κάθε ασφαλή + αφετηρία 0</span>
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> S; i<span class="c-op">++</span>) <span class="c-fn">dijkstra</span>(safe_id[i], D[i]);
+    <span class="c-fn">dijkstra</span>(<span class="c-num">0</span>, D[S]); <span class="c-cmt">// D[S] = από κόμβο 0</span>
 
     <span class="c-cmt">// Bitmask DP</span>
-    <span class="c-type">int</span> <span class="c-var">FULL</span> <span class="c-op">=</span> (<span class="c-num">1</span> <span class="c-op">&lt;&lt;</span> <span class="c-var">S</span>) <span class="c-op">-</span> <span class="c-num">1</span>;
-    vector&lt;vector&lt;<span class="c-type">ll</span>&gt;&gt; <span class="c-var">dp</span>(<span class="c-num">1</span> <span class="c-op">&lt;&lt;</span> <span class="c-var">S</span>, vector&lt;<span class="c-type">ll</span>&gt;(<span class="c-var">S</span>, <span class="c-var">INF</span>));
+    <span class="c-type">int</span> FULL <span class="c-op">=</span> (<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>S)<span class="c-op">-</span><span class="c-num">1</span>;
+    vector&lt;vector&lt;<span class="c-type">ll</span>&gt;&gt; dp(<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>S, vector&lt;<span class="c-type">ll</span>&gt;(S, INF));
 
-    <span class="c-cmt">// Βάση: ξεκίνα από κόμβο 0, πήγαινε στον safe[i]</span>
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">S</span>; <span class="c-var">i</span><span class="c-op">++</span>)
-        <span class="c-var">dp</span>[<span class="c-num">1</span><span class="c-op">&lt;&lt;</span><span class="c-var">i</span>][<span class="c-var">i</span>] <span class="c-op">=</span> <span class="c-var">dist_from</span>[<span class="c-var">S</span>][<span class="c-var">safe_id</span>[<span class="c-var">i</span>]];
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> S; i<span class="c-op">++</span>)
+        dp[<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>i][i] <span class="c-op">=</span> D[S][safe_id[i]]; <span class="c-cmt">// βάσις</span>
 
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">mask</span> <span class="c-op">=</span> <span class="c-num">1</span>; <span class="c-var">mask</span> <span class="c-op">&lt;=</span> <span class="c-var">FULL</span>; <span class="c-var">mask</span><span class="c-op">++</span>) {
-        <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">S</span>; <span class="c-var">i</span><span class="c-op">++</span>) {
-            <span class="c-kw">if</span> (<span class="c-op">!</span>(<span class="c-var">mask</span> <span class="c-op">&amp;</span> (<span class="c-num">1</span><span class="c-op">&lt;&lt;</span><span class="c-var">i</span>))) <span class="c-kw">continue</span>;
-            <span class="c-kw">if</span> (<span class="c-var">dp</span>[<span class="c-var">mask</span>][<span class="c-var">i</span>] <span class="c-op">==</span> <span class="c-var">INF</span>) <span class="c-kw">continue</span>;
-            <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">j</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">j</span> <span class="c-op">&lt;</span> <span class="c-var">S</span>; <span class="c-var">j</span><span class="c-op">++</span>) {
-                <span class="c-kw">if</span> (<span class="c-var">mask</span> <span class="c-op">&amp;</span> (<span class="c-num">1</span><span class="c-op">&lt;&lt;</span><span class="c-var">j</span>)) <span class="c-kw">continue</span>;
-                <span class="c-type">int</span>  <span class="c-var">nm</span> <span class="c-op">=</span> <span class="c-var">mask</span> <span class="c-op">|</span> (<span class="c-num">1</span><span class="c-op">&lt;&lt;</span><span class="c-var">j</span>);
-                <span class="c-type">ll</span>   <span class="c-var">nd</span> <span class="c-op">=</span> <span class="c-var">dp</span>[<span class="c-var">mask</span>][<span class="c-var">i</span>] <span class="c-op">+</span> <span class="c-var">dist_from</span>[<span class="c-var">i</span>][<span class="c-var">safe_id</span>[<span class="c-var">j</span>]];
-                <span class="c-var">dp</span>[<span class="c-var">nm</span>][<span class="c-var">j</span>] <span class="c-op">=</span> min(<span class="c-var">dp</span>[<span class="c-var">nm</span>][<span class="c-var">j</span>], <span class="c-var">nd</span>);
+    <span class="c-kw">for</span> (<span class="c-type">int</span> mask <span class="c-op">=</span> <span class="c-num">1</span>; mask <span class="c-op">&lt;=</span> FULL; mask<span class="c-op">++</span>)
+        <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> S; i<span class="c-op">++</span>) {
+            <span class="c-kw">if</span> (<span class="c-op">!</span>(mask<span class="c-op">&amp;</span>(<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>i)) <span class="c-op">||</span> dp[mask][i]<span class="c-op">==</span>INF) <span class="c-kw">continue</span>;
+            <span class="c-kw">for</span> (<span class="c-type">int</span> j <span class="c-op">=</span> <span class="c-num">0</span>; j <span class="c-op">&lt;</span> S; j<span class="c-op">++</span>) {
+                <span class="c-kw">if</span> (mask<span class="c-op">&amp;</span>(<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>j)) <span class="c-kw">continue</span>;
+                <span class="c-type">ll</span> nd <span class="c-op">=</span> dp[mask][i] <span class="c-op">+</span> D[i][safe_id[j]];
+                dp[mask<span class="c-op">|</span>(<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>j)][j] <span class="c-op">=</span> min(dp[mask<span class="c-op">|</span>(<span class="c-num">1</span><span class="c-op">&lt;&lt;</span>j)][j], nd);
             }
         }
-    }
 
-    <span class="c-type">ll</span> <span class="c-var">ans</span> <span class="c-op">=</span> <span class="c-var">INF</span>;
-    <span class="c-kw">for</span> (<span class="c-type">int</span> <span class="c-var">i</span> <span class="c-op">=</span> <span class="c-num">0</span>; <span class="c-var">i</span> <span class="c-op">&lt;</span> <span class="c-var">S</span>; <span class="c-var">i</span><span class="c-op">++</span>)
-        <span class="c-var">ans</span> <span class="c-op">=</span> min(<span class="c-var">ans</span>, <span class="c-var">dp</span>[<span class="c-var">FULL</span>][<span class="c-var">i</span>]);
+    <span class="c-type">ll</span> ans <span class="c-op">=</span> INF;
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i <span class="c-op">=</span> <span class="c-num">0</span>; i <span class="c-op">&lt;</span> S; i<span class="c-op">++</span>)
+        ans <span class="c-op">=</span> min(ans, dp[FULL][i]);
 
-    cout <span class="c-op">&lt;&lt;</span> <span class="c-var">ans</span> <span class="c-op">&lt;&lt;</span> <span class="c-str">"\n"</span>;
+    cout <span class="c-op">&lt;&lt;</span> ans <span class="c-op">&lt;&lt;</span> <span class="c-str">"\n"</span>;
     <span class="c-kw">return</span> <span class="c-num">0</span>;
 }
 </pre></div>
   </div>
-</div>
 
-<!-- RIGHT COL: VISUALIZER -->
+</div><!-- end left col -->
+
+<!-- ══════ RIGHT: VISUALIZER ══════ -->
 <div class="col">
-  <div class="col-title">Διαδραστική Οπτικοποίηση</div>
+  <div class="col-heading">🔭 Διαδραστική Οπτικοποίησις</div>
 
-  <div class="controls-bar">
-    <div class="ctrl-group">Πιάτα (N): <input type="number" id="inp-n" value="8" min="3" max="12"></div>
-    <div class="ctrl-group">Δηλητηριασμένα (K): <input type="number" id="inp-k" value="2" min="1" max="5"></div>
-    <button class="btn" onclick="generate()">Τυχαίο ↺</button>
-    <button class="btn go" onclick="runSolve()">Λύσε ▶</button>
+  <div class="controls-royal">
+    <div class="ctrl-lbl">Πιάτα (N): <input type="number" id="inp-n" value="8" min="3" max="12"></div>
+    <div class="ctrl-lbl">Δηλητηριασμένα (K): <input type="number" id="inp-k" value="2" min="1" max="5"></div>
+    <button class="royal-btn" onclick="generate()">⟳ Νέος Γράφος</button>
+    <button class="royal-btn go" onclick="runSolve()">⚔ Λύσε!</button>
   </div>
 
-  <div class="legend">
-    <div class="leg"><div class="leg-dot" style="background:var(--start)"></div>Αφετηρία (0)</div>
+  <div class="legend-royal">
+    <div class="leg"><div class="leg-dot" style="background:#818cf8"></div>Αφετηρία (0)</div>
     <div class="leg"><div class="leg-dot" style="background:var(--safe)"></div>Ασφαλές</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--poison)"></div>Δηλητηριασμένο</div>
-    <div class="leg"><div class="leg-line" style="background:var(--path)"></div>Βέλτιστο μονοπάτι</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--poison)"></div>Δεδηλητηριασμένον</div>
+    <div class="leg"><div class="leg-line" style="background:var(--gold)"></div>Βέλτιστον μονοπάτι</div>
   </div>
 
-  <div class="canvas-wrap">
-    <canvas id="gc" width="600" height="320"></canvas>
+  <div class="canvas-royal">
+    <canvas id="gc" width="600" height="300"></canvas>
   </div>
 
-  <div class="metrics">
-    <div class="metric"><div class="lbl">Ελάχ. Κόστος</div><div class="val path" id="m-cost">—</div></div>
-    <div class="metric"><div class="lbl">Ασφαλή Πιάτα</div><div class="val safe" id="m-safe">—</div></div>
-    <div class="metric"><div class="lbl">Αφετηρία</div><div class="val start" id="m-start">0</div></div>
-    <div class="metric"><div class="lbl">Σειρά επίσκεψης</div><div class="val" id="m-order" style="font-size:0.95rem">—</div></div>
+  <div class="metrics-royal">
+    <div class="metric-royal"><div class="lbl">Ελάχ. Κόστος</div><div class="val" id="m-cost">—</div></div>
+    <div class="metric-royal"><div class="lbl">Ασφαλή Πιάτα</div><div class="val green" id="m-safe">—</div></div>
+    <div class="metric-royal"><div class="lbl">Αφετηρία</div><div class="val" style="color:#818cf8">0</div></div>
+    <div class="metric-royal"><div class="lbl">Πορεία</div><div class="val small" id="m-order">—</div></div>
   </div>
 
-  <div class="log" id="log">Πάτα "Λύσε ▶" για να δεις τον αλγόριθμο σε δράση!</div>
-</div>
+  <div class="royal-log" id="log">
+    <em>Ανακοίνωσις: Πάτησε «⚔ Λύσε!» δια να εκδηλωθή η βασιλική βούλησις του αλγορίθμου.</em>
+  </div>
 
-<div class="bottom-bar">
-  <span>Dijkstra + Bitmask DP</span>
-  <span class="sep">|</span>
-  <span>Πολυπλοκότητα: O(S·(N+M)logN + 2^S·S²)</span>
-  <span class="sep">|</span>
-  <span>Κόμβοι 0-indexed</span>
-</div>
+</div><!-- end right col -->
 
-</div>
+</div><!-- end page -->
+
+<footer>
+  <span>Dijkstra + Bitmask DP &mdash; O(S·(N+M)logN + 2^S·S²)</span>
+  <span class="motto">✦ Πάντα με ll ✦</span>
+  <span>Κόμβοι: 0-indexed &nbsp;|&nbsp; Κλικ σε κόμβο για λεπτομέρειες</span>
+</footer>
 
 <script>
 const canvas = document.getElementById('gc');
 const ctx = canvas.getContext('2d');
-const W = 600, H = 320;
+const W = 600, H = 300;
 
-let nodes = [], edges = [], N = 8, K = 2;
-let pathEdges = new Set(), visitOrder = [];
-let solved = false;
+let nodes=[], edges=[], N=8, K=2;
+let pathEdges=new Set(), visitOrder=[], solved=false;
 
-// ---- GRAPH GENERATION ----
 function generate() {
-  N = Math.max(3, Math.min(12, +document.getElementById('inp-n').value || 8));
-  K = Math.max(1, Math.min(N-2, +document.getElementById('inp-k').value || 2));
-
-  nodes = [];
-  const cx = W/2, cy = H/2 - 10, r = Math.min(W, H) * 0.37;
-  for (let i = 0; i < N; i++) {
-    const a = (2*Math.PI*i/N) - Math.PI/2;
-    nodes.push({ id: i, x: Math.round(cx + r*Math.cos(a)), y: Math.round(cy + r*Math.sin(a)),
-      oil: Math.floor(Math.random()*15)+1, poisoned: false });
+  N = Math.max(3, Math.min(12, +document.getElementById('inp-n').value||8));
+  K = Math.max(1, Math.min(N-2, +document.getElementById('inp-k').value||2));
+  nodes=[];
+  const cx=W/2, cy=H/2-10, r=Math.min(W,H)*0.36;
+  for(let i=0;i<N;i++){
+    const a=(2*Math.PI*i/N)-Math.PI/2;
+    nodes.push({id:i, x:Math.round(cx+r*Math.cos(a)), y:Math.round(cy+r*Math.sin(a)),
+      oil:Math.floor(Math.random()*18)+1, poisoned:false});
   }
-  // Mark K nodes with least oil as poisoned
-  const byOil = [...nodes].sort((a,b)=>a.oil-b.oil);
-  byOil.slice(0,K).forEach(n => { nodes[n.id].poisoned = true; });
-
-  edges = [];
-  // Ring
-  for (let i = 0; i < N; i++) {
-    edges.push({ u:i, v:(i+1)%N, w:Math.floor(Math.random()*8)+1 });
+  const byOil=[...nodes].sort((a,b)=>a.oil-b.oil);
+  byOil.slice(0,K).forEach(n=>{nodes[n.id].poisoned=true;});
+  edges=[];
+  for(let i=0;i<N;i++) edges.push({u:i,v:(i+1)%N,w:Math.floor(Math.random()*9)+1});
+  for(let e=0;e<Math.floor(N*0.9);e++){
+    let u=Math.floor(Math.random()*N),v=Math.floor(Math.random()*N);
+    if(u===v) continue;
+    if(!edges.find(ed=>(ed.u===u&&ed.v===v)||(ed.u===v&&ed.v===u)))
+      edges.push({u,v,w:Math.floor(Math.random()*14)+1});
   }
-  // Extra edges
-  for (let e = 0; e < Math.floor(N * 0.8); e++) {
-    let u = Math.floor(Math.random()*N), v = Math.floor(Math.random()*N);
-    if (u===v) continue;
-    if (!edges.find(ed=>(ed.u===u&&ed.v===v)||(ed.u===v&&ed.v===u)))
-      edges.push({ u, v, w: Math.floor(Math.random()*12)+1 });
-  }
-
-  pathEdges = new Set(); visitOrder = []; solved = false;
-  document.getElementById('m-cost').textContent = '—';
-  document.getElementById('m-safe').textContent = N - K;
-  document.getElementById('m-order').textContent = '—';
-  document.getElementById('log').innerHTML = 'Γράφος δημιουργήθηκε! Πάτα <b style="color:var(--path)">Λύσε ▶</b>';
+  pathEdges=new Set(); visitOrder=[]; solved=false;
+  document.getElementById('m-cost').textContent='—';
+  document.getElementById('m-safe').textContent=N-K;
+  document.getElementById('m-order').textContent='—';
+  document.getElementById('log').innerHTML='<em>Νέος γράφος δημιουργήθη. Πάτα <b style="color:var(--gold)">⚔ Λύσε!</b> για να εκδηλωθή η βασιλική λύσις.</em>';
   draw();
 }
 
-// ---- DIJKSTRA ----
-function dijkstra(src) {
-  const INF = 1e15, dist = Array(N).fill(INF), prev = Array(N).fill(-1);
-  dist[src] = 0;
-  const pq = [[0, src]]; // [dist, node]
-  while (pq.length) {
+function dijkstra(src){
+  const INF=1e15, dist=Array(N).fill(INF), prev=Array(N).fill(-1);
+  dist[src]=0;
+  const pq=[[0,src]];
+  while(pq.length){
     pq.sort((a,b)=>a[0]-b[0]);
-    const [d, u] = pq.shift();
-    if (d > dist[u]) continue;
-    for (const e of edges) {
-      let v = -1, w = e.w;
-      if (e.u === u) v = e.v;
-      else if (e.v === u) v = e.u;
-      if (v < 0) continue;
-      if (dist[u] + w < dist[v]) {
-        dist[v] = dist[u] + w;
-        prev[v] = u;
-        pq.push([dist[v], v]);
-      }
+    const [d,u]=pq.shift();
+    if(d>dist[u]) continue;
+    for(const e of edges){
+      let v=-1,w=e.w;
+      if(e.u===u) v=e.v; else if(e.v===u) v=e.u;
+      if(v<0) continue;
+      if(dist[u]+w<dist[v]){dist[v]=dist[u]+w; prev[v]=u; pq.push([dist[v],v]);}
     }
   }
-  return { dist, prev };
+  return {dist,prev};
 }
 
-// ---- SOLVE ----
-function runSolve() {
-  const INF = 1e15;
-  const safe = nodes.filter(n => !n.poisoned).map(n => n.id);
-  const S = safe.length;
-
-  if (S === 0) {
-    document.getElementById('log').innerHTML = '<span class="ok">Δεν υπάρχουν ασφαλή πιάτα!</span>';
-    return;
-  }
-
-  // Dijkstra from node 0 and each safe node
-  const distArr = []; // distArr[i] = dijkstra distances from safe[i], distArr[S] = from node 0
-  const prevArr = [];
-  for (let i = 0; i < S; i++) {
-    const r = dijkstra(safe[i]);
-    distArr.push(r.dist);
-    prevArr.push(r.prev);
-  }
-  const r0 = dijkstra(0);
-  distArr.push(r0.dist);
-  prevArr.push(r0.prev);
-
-  // Bitmask DP
-  const FULL = (1 << S) - 1;
-  const dp = Array.from({length: 1<<S}, ()=>Array(S).fill(INF));
-  const dpPrev = Array.from({length: 1<<S}, ()=>Array(S).fill(-1)); // which safe node came before
-
-  for (let i = 0; i < S; i++) {
-    dp[1<<i][i] = distArr[S][safe[i]]; // cost from node 0 to safe[i]
-  }
-
-  for (let mask = 1; mask <= FULL; mask++) {
-    for (let i = 0; i < S; i++) {
-      if (!(mask & (1<<i))) continue;
-      if (dp[mask][i] === INF) continue;
-      for (let j = 0; j < S; j++) {
-        if (mask & (1<<j)) continue;
-        const nm = mask | (1<<j);
-        const nd = dp[mask][i] + distArr[i][safe[j]];
-        if (nd < dp[nm][j]) {
-          dp[nm][j] = nd;
-          dpPrev[nm][j] = i;
-        }
+function runSolve(){
+  const INF=1e15;
+  const safe=nodes.filter(n=>!n.poisoned).map(n=>n.id);
+  const S=safe.length;
+  if(S===0){document.getElementById('log').innerHTML='<span class="ok">Ουδέν ασφαλές πιάτον υπάρχει!</span>';return;}
+  const distArr=[], prevArr=[];
+  for(let i=0;i<S;i++){const r=dijkstra(safe[i]);distArr.push(r.dist);prevArr.push(r.prev);}
+  const r0=dijkstra(0);distArr.push(r0.dist);prevArr.push(r0.prev);
+  const FULL=(1<<S)-1;
+  const dp=Array.from({length:1<<S},()=>Array(S).fill(INF));
+  const dpPrev=Array.from({length:1<<S},()=>Array(S).fill(-1));
+  for(let i=0;i<S;i++) dp[1<<i][i]=distArr[S][safe[i]];
+  for(let mask=1;mask<=FULL;mask++)
+    for(let i=0;i<S;i++){
+      if(!(mask&(1<<i))||dp[mask][i]===INF) continue;
+      for(let j=0;j<S;j++){
+        if(mask&(1<<j)) continue;
+        const nm=mask|(1<<j), nd=dp[mask][i]+distArr[i][safe[j]];
+        if(nd<dp[nm][j]){dp[nm][j]=nd;dpPrev[nm][j]=i;}
       }
     }
-  }
-
-  let best = INF, lastNode = -1;
-  for (let i = 0; i < S; i++) {
-    if (dp[FULL][i] < best) { best = dp[FULL][i]; lastNode = i; }
-  }
-
-  // Reconstruct order of safe nodes visited
-  const order = [];
-  let mask = FULL, cur = lastNode;
-  while (cur !== -1) {
-    order.push(safe[cur]);
-    const pmask = mask ^ (1<<cur);
-    const pi = dpPrev[mask][cur];
-    mask = pmask;
-    cur = pi;
-  }
+  let best=INF,lastNode=-1;
+  for(let i=0;i<S;i++) if(dp[FULL][i]<best){best=dp[FULL][i];lastNode=i;}
+  const order=[];
+  let mask=FULL,cur=lastNode;
+  while(cur!==-1){order.push(safe[cur]);const pm=mask^(1<<cur);const pi=dpPrev[mask][cur];mask=pm;cur=pi;}
   order.reverse();
-  visitOrder = order;
-
-  // Build path edges to highlight
-  pathEdges = new Set();
-  // Path: 0 -> order[0] -> order[1] -> ...
-  const fullPath = [0, ...order];
-  for (let step = 0; step < fullPath.length - 1; step++) {
-    let from, to;
-    if (step === 0) {
-      from = 0;
-      to = fullPath[1];
-      // Use dist from node 0
-      reconstructPath(0, to, prevArr[S], pathEdges);
-    } else {
-      from = fullPath[step];
-      to = fullPath[step+1];
-      const fromSafeIdx = safe.indexOf(from);
-      reconstructPath(from, to, prevArr[fromSafeIdx], pathEdges);
-    }
+  visitOrder=order;
+  pathEdges=new Set();
+  const full=[0,...order];
+  for(let s=0;s<full.length-1;s++){
+    const from=full[s],to=full[s+1];
+    const prevArr2=s===0?prevArr[S]:prevArr[safe.indexOf(from)];
+    reconstructPath(from,to,prevArr2,pathEdges);
   }
-
-  solved = true;
-  document.getElementById('m-cost').textContent = best >= 1e14 ? '∞' : best;
-  document.getElementById('m-safe').textContent = S;
-  document.getElementById('m-order').textContent = '0→' + order.join('→');
-
-  const log = document.getElementById('log');
-  log.innerHTML =
-    `<span class="ok">✓ Βέλτιστο κόστος: <b>${best}</b></span>  |  ` +
-    `Σειρά: <span class="em">0 → ${order.join(' → ')}</span><br>;
-
-
+  solved=true;
+  document.getElementById('m-cost').textContent=best>=1e14?'∞':best;
+  document.getElementById('m-safe').textContent=S;
+  document.getElementById('m-order').textContent='0→'+order.join('→');
+  document.getElementById('log').innerHTML=
+    `<span class="ok">✓ Ελαχίστη απόστασις: <b>${best}</b></span> &nbsp;|&nbsp; `+
+    `Πορεία: <span class="cost">0 → ${order.join(' → ')}</span><br>`+
+    `<span class="info">Dijkstra εκ ${S+1} κόμβων · Bitmask DP: ${1<<S} καταστάσεις (${S} ασφαλή)</span>`;
   draw();
 }
 
-function reconstructPath(src, dst, prev, set) {
-  let cur = dst;
-  while (cur !== -1 && cur !== src) {
-    const p = prev[cur];
-    if (p === -1) break;
-    const key = [Math.min(p,cur), Math.max(p,cur)].join('-');
-    set.add(key);
-    cur = p;
+function reconstructPath(src,dst,prev,set){
+  let cur=dst;
+  while(cur!==-1&&cur!==src){
+    const p=prev[cur]; if(p===-1) break;
+    set.add([Math.min(p,cur),Math.max(p,cur)].join('-'));
+    cur=p;
   }
 }
 
-// ---- DRAW ----
-function draw() {
-  ctx.clearRect(0, 0, W, H);
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  // subtle grid
+  ctx.strokeStyle='rgba(201,168,76,0.04)'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
 
-  // Draw edges
-  for (const e of edges) {
-    const u = nodes[e.u], v = nodes[e.v];
-    const key = [Math.min(e.u,e.v), Math.max(e.u,e.v)].join('-');
-    const isPath = pathEdges.has(key);
-    ctx.beginPath();
-    ctx.moveTo(u.x, u.y);
-    ctx.lineTo(v.x, v.y);
-    if (isPath) {
-      ctx.strokeStyle = '#f59e0b';
-      ctx.lineWidth = 3.5;
-      ctx.setLineDash([]);
+  for(const e of edges){
+    const u=nodes[e.u],v=nodes[e.v];
+    const key=[Math.min(e.u,e.v),Math.max(e.u,e.v)].join('-');
+    const isPath=pathEdges.has(key);
+    ctx.beginPath(); ctx.moveTo(u.x,u.y); ctx.lineTo(v.x,v.y);
+    if(isPath){
+      ctx.strokeStyle='#c9a84c'; ctx.lineWidth=3.5; ctx.setLineDash([]);
+      // glow
+      ctx.shadowColor='rgba(201,168,76,0.4)'; ctx.shadowBlur=8;
     } else {
-      ctx.strokeStyle = '#2e2e44';
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([4,4]);
+      ctx.strokeStyle='rgba(90,72,32,0.5)'; ctx.lineWidth=1; ctx.setLineDash([5,5]);
+      ctx.shadowBlur=0;
     }
     ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Edge weight label
-    const mx = (u.x+v.x)/2, my = (u.y+v.y)/2;
-    const dx = v.x-u.x, dy = v.y-u.y;
-    const len = Math.sqrt(dx*dx+dy*dy);
-    const nx = -dy/len*10, ny = dx/len*10;
-    ctx.font = '11px JetBrains Mono, monospace';
-    ctx.fillStyle = isPath ? '#f59e0b' : '#4a4a6a';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(e.w, mx+nx, my+ny);
+    ctx.shadowBlur=0; ctx.setLineDash([]);
+    const mx=(u.x+v.x)/2,my=(u.y+v.y)/2;
+    const dx=v.x-u.x,dy=v.y-u.y,len=Math.sqrt(dx*dx+dy*dy);
+    const nx=-dy/len*10,ny=dx/len*10;
+    ctx.font='10px JetBrains Mono,monospace';
+    ctx.fillStyle=isPath?'#c9a84c':'#5a4820';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(e.w,mx+nx,my+ny);
   }
 
-  // Draw order arrows on path
-  if (solved && visitOrder.length > 0) {
-    const fullPath = [0, ...visitOrder];
-    ctx.font = 'bold 11px Syne, sans-serif';
-    for (let i = 0; i < fullPath.length - 1; i++) {
-      const u = nodes[fullPath[i]], v = nodes[fullPath[i+1]];
-      const mx = (u.x+v.x)/2, my = (u.y+v.y)/2;
-      ctx.fillStyle = '#f59e0b';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(`${i+1}`, mx, my-12);
+  // step numbers
+  if(solved&&visitOrder.length>0){
+    const full=[0,...visitOrder];
+    for(let i=0;i<full.length-1;i++){
+      const u=nodes[full[i]],v=nodes[full[i+1]];
+      const mx=(u.x+v.x)/2,my=(u.y+v.y)/2;
+      ctx.font='bold 11px Playfair Display,serif';
+      ctx.fillStyle='#f0d080';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ Ⅵ Ⅶ Ⅷ Ⅸ Ⅹ'.split(' ')[i]||String(i+1),mx,my-13);
     }
   }
 
-  // Draw nodes
-  for (const n of nodes) {
-    const r = n.id === 0 ? 18 : 16;
-    let fill, stroke, textColor;
-    if (n.id === 0) {
-      fill = '#312e81'; stroke = '#818cf8'; textColor = '#c7d2fe';
-    } else if (n.poisoned) {
-      fill = '#450a0a'; stroke = '#ef4444'; textColor = '#fca5a5';
-    } else {
-      fill = '#052e16'; stroke = '#22c55e'; textColor = '#86efac';
-    }
+  for(const n of nodes){
+    const r=n.id===0?20:17;
+    const inPath=visitOrder.includes(n.id)||n.id===0;
+    let fill,stroke,textCol;
+    if(n.id===0){fill='#1a1640';stroke='#818cf8';textCol='#c7d2fe';}
+    else if(n.poisoned){fill='#1a0808';stroke='#e05050';textCol='#fca5a5';}
+    else{fill='#081a0e';stroke='#4caf7d';textCol='#86efac';}
 
-    // Glow for path nodes
-    const inPath = visitOrder.includes(n.id) || n.id === 0;
-    if (solved && inPath) {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, r+6, 0, Math.PI*2);
-      ctx.fillStyle = n.id === 0 ? 'rgba(129,140,248,0.12)' : 'rgba(245,158,11,0.15)';
+    if(solved&&inPath){
+      ctx.beginPath();ctx.arc(n.x,n.y,r+8,0,Math.PI*2);
+      ctx.fillStyle=n.id===0?'rgba(129,140,248,0.1)':'rgba(201,168,76,0.12)';
       ctx.fill();
+      ctx.strokeStyle=n.id===0?'rgba(129,140,248,0.3)':'rgba(201,168,76,0.3)';
+      ctx.lineWidth=1; ctx.stroke();
     }
 
-    ctx.beginPath();
-    ctx.arc(n.x, n.y, r, 0, Math.PI*2);
-    ctx.fillStyle = fill;
-    ctx.fill();
-    ctx.strokeStyle = stroke;
-    ctx.lineWidth = solved && inPath ? 2.5 : 1.5;
-    ctx.stroke();
+    ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);
+    ctx.fillStyle=fill;ctx.fill();
+    if(solved&&inPath){ctx.shadowColor=n.id===0?'#818cf8':'#c9a84c';ctx.shadowBlur=12;}
+    ctx.strokeStyle=stroke;ctx.lineWidth=solved&&inPath?2:1.5;ctx.stroke();
+    ctx.shadowBlur=0;
 
-    // Node ID
-    ctx.font = `bold 13px Syne, sans-serif`;
-    ctx.fillStyle = textColor;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(n.id, n.x, n.y - 1);
+    ctx.font='bold 13px Playfair Display,serif';
+    ctx.fillStyle=textCol;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.id,n.x,n.y-1);
 
-    // Oil label
-    ctx.font = '10px JetBrains Mono, monospace';
-    ctx.fillStyle = n.poisoned ? '#f87171' : '#4ade80';
-    ctx.fillText('🛢' + n.oil, n.x, n.y + r + 11);
+    // oil badge
+    const oilStr='🛢'+n.oil;
+    ctx.font='9px JetBrains Mono,monospace';
+    ctx.fillStyle=n.poisoned?'#e05050':'#4caf7d';
+    ctx.fillText(oilStr,n.x,n.y+r+10);
   }
 }
 
-// ---- TAB SWITCHING ----
-function switchTab(name) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes("'"+name+"'")));
-  document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === 'tab-'+name));
+// Click on node
+canvas.addEventListener('click',function(e){
+  const rect=canvas.getBoundingClientRect();
+  const sx=canvas.width/rect.width, sy=canvas.height/rect.height;
+  const mx=(e.clientX-rect.left)*sx, my=(e.clientY-rect.top)*sy;
+  for(const n of nodes){
+    const dx=n.x-mx,dy=n.y-my;
+    if(Math.sqrt(dx*dx+dy*dy)<22){
+      document.getElementById('log').innerHTML=
+        `<em>Κόμβος <b style="color:var(--gold)">${n.id}</b> — `+
+        `Λάδι: <b style="color:${n.poisoned?'var(--poison)':'var(--safe)'}">${n.oil}</b> — `+
+        (n.id===0?'<b style="color:#818cf8">Αφετηρία</b>':
+        n.poisoned?'<span class="ok" style="color:var(--poison)">⚠ ΔΗΛΗΤΗΡΙΑΣΜΕΝΟΝ (Νετανιάχου!)</span>':
+        '<span class="ok">✓ Ασφαλές πιάτον</span>')+
+        (visitOrder.includes(n.id)?` — <span class="cost">Βήμα ${visitOrder.indexOf(n.id)+1} στη βέλτιστη πορεία</span>`:'')+'</em>';
+      break;
+    }
+  }
+});
+
+function switchTab(n){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('onclick').includes("'"+n+"'")));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+n));
 }
 
-// Init
 generate();
 </script>
 </body>
 </html>
+HTMLEOF
+echo "done"
