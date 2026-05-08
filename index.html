@@ -643,8 +643,8 @@ function runSolve() {
   const log = document.getElementById('log');
   log.innerHTML =
     `<span class="ok">✓ Βέλτιστο κόστος: <b>${best}</b></span>  |  ` +
-    `Σειρά: <span class="em">0 → ${order.join(' → ')}</span><br>` +
-    `<span class="info">Dijkstra από ${S+1} κόμβους + Bitmask DP (${S} ασφαλή = ${1<<S} καταστάσεις)</span>`;
+    `Σειρά: <span class="em">0 → ${order.join(' → ')}</span><br>;
+
 
   draw();
 }
